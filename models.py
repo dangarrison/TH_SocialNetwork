@@ -4,7 +4,7 @@ from flask_bcrypt import generate_password_hash
 from flask_login import UserMixin
 from peewee import *
 
-DATABASE = PostgresqlDatabase('social.db')
+DATABASE = SqliteDatabase('social.db')
 
 class User(UserMixin, Model):
     username = CharField(unique=True)
@@ -26,7 +26,7 @@ class User(UserMixin, Model):
                 password=generate_password_hash(password),
                 is_admin=admin
             )
-        except IntegretyError:
+        except IntegrityError:
             raise ValueError("User already exists")
 
 def initialize():
