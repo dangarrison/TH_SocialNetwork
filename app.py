@@ -122,7 +122,7 @@ def follow(username):
             pass
         else:
             flash("You're now following {}!".format(to_user.username), "success")
-        return redirect(url_for('stream', username=to_user.username))
+    return redirect(url_for('stream', username=to_user.username))
 
 @app.route('/unfollow/<username>')
 @login_required
